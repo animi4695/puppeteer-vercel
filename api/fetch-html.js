@@ -20,8 +20,21 @@ export default async function handler(req, res) {
         '--disable-setuid-sandbox',
         '--disable-blink-features=AutomationControlled',
       ],
-      headless: true, // Use full browser (set to true if needed for production)
+      executablePath:
+        process.env.NODE_ENV === "production"
+          ? process.env.PUPPETEER_EXECUTABLE_PATH
+          : puppeteer.executablePath(),
     });
+
+
+    // const browser = await puppeteer.launch({
+    //   args: [
+    //     '--no-sandbox',
+    //     '--disable-setuid-sandbox',
+    //     '--disable-blink-features=AutomationControlled',
+    //   ],
+    //   headless: true, // Use full browser (set to true if needed for production)
+    // });
 
     const page = await browser.newPage();
 
