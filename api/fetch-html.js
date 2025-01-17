@@ -1,4 +1,5 @@
-const puppeteer = require('puppeteer');
+// const puppeteer = require('puppeteer');
+import puppeteer from 'puppeteer';
 
 export default async function handler(req, res) {
   const { playlistid } = req.query;
